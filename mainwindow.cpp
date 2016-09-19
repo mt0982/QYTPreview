@@ -5,11 +5,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 {
     ui->setupUi(this);
 
-    parser.readFile("/home/asus/Pulpit/file.xml");
-
     /* Configure Table */
     configureTable();
-    setTableData();
 }
 
 MainWindow::~MainWindow()
@@ -52,6 +49,29 @@ void MainWindow::setTableData()
         ui->table->setItem(i, 2, link);
     }
 }
+
+void MainWindow::on_lineName_textChanged(const QString &arg1)
+{
+    /* Find User Name */
+    if(networkkManager.setURLName(arg1) > 5000) {
+        qDebug() << "User was found";
+
+        /* Save To File */
+        QFile file(QDir::currentPath() + "/file.xml");
+
+        if(file.open(QIODevice::ReadWrite | QIODevice::Text)){
+            QTextStream stream(&file);
+            stream << networkkManager.getURLContent();
+        } else {
+            qDebug() << "File Open Error";
+        }
+
+        /* Load Data To Table */
+        parser.readFile(QDir::currentPath() + "/file.xml");
+        setTableData();
+    }
+}
+
 
 
 

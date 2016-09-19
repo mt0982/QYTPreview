@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui xml
+QT       += core gui xml network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -14,9 +14,11 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    documentparser.cpp
+    documentparser.cpp \
+    networkmanager.cpp
 
 HEADERS  += mainwindow.h \
-    documentparser.h
+    documentparser.h \
+    networkmanager.h
 
 FORMS    += mainwindow.ui

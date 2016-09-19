@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QHeaderView>
 #include <documentparser.h>
+#include <networkmanager.h>
 
 namespace Ui {
 class MainWindow;
@@ -19,9 +20,13 @@ public:
     void configureTable();
     void setTableData();
 
+private slots:
+    void on_lineName_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     DocumentParser parser;
+    NetworkManager networkkManager;
 };
 
 #endif // MAINWINDOW_H

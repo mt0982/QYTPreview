@@ -4,6 +4,8 @@
 #include <QDebug>
 #include <QFile>
 #include <QDomDocument>
+#include <QDir>
+#include <QTextStream>
 
 class XMLData {
 public:
