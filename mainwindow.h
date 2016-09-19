@@ -17,6 +17,7 @@ public:
     ~MainWindow();
 
     void configureTable();
+    void setTableData();
 
 private:
     Ui::MainWindow *ui;

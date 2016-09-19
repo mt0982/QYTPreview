@@ -59,3 +59,20 @@ void DocumentParser::readFile(const QString &path)
 
     file.close();
 }
+
+QVector<XMLData> DocumentParser::getXmlData() const
+{
+    return xmlData;
+}
+
+
+
+
+
+
+
+
+
+
+
+

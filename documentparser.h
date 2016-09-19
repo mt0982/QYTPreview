@@ -22,6 +22,7 @@ private:
 public:
     DocumentParser();
     void readFile(const QString &path);
+    QVector<XMLData> getXmlData() const;
 };
 
 #endif // DOCUMENTPARSER_H
