@@ -20,9 +20,10 @@ void MainWindow::configureTable()
     headerList << " " << "Title" << "Video ID" << "Video Link";
     ui->table->setColumnCount(4);
     ui->table->setHorizontalHeaderLabels(headerList);
+    ui->table->setColumnWidth(0, 240);
 
     /* Stretch */
-    for (int nr = 0; nr < ui->table->horizontalHeader()->count(); ++nr) {
+    for (int nr = 1; nr < ui->table->horizontalHeader()->count(); ++nr) {
         ui->table->horizontalHeader()->setSectionResizeMode(nr, QHeaderView::Stretch);
     }
 }
@@ -39,6 +40,7 @@ void MainWindow::setTableData()
     QTableWidgetItem *title;
     QTableWidgetItem *videoID;
     QTableWidgetItem *link;
+    QTableWidgetItem *image;
 
     /* Add Items To Table */
     for(int i = 0; i < xmlData.size(); i++) {
@@ -60,8 +62,10 @@ void MainWindow::setTableData()
     /* Set Image */
     qDebug() << "Size:" << xmlData.size();
     for(int i = 0; i < xmlData.size(); i++) {
-        qDebug() << xmlData[i].image.size();
-        ui->table->setItem(i, 0, new QTableWidgetItem(xmlData[i].image.width()));
+        ui->table->setRowHeight(i, 160);
+        image = new QTableWidgetItem;
+        image->setData(Qt::DecorationRole, xmlData[i].image.scaled(240, 160));
+        ui->table->setItem(i, 0, image);
     }
 }
 
