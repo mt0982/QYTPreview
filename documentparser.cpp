@@ -7,6 +7,9 @@ DocumentParser::DocumentParser()
 
 void DocumentParser::readFile(const QString &path)
 {
+    /* Clear Data Container */
+    xmlData.clear();
+
     /* Read File */
     QFile file(path);
     if (!file.open(QIODevice::ReadOnly)) {

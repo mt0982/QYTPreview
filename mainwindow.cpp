@@ -29,6 +29,9 @@ void MainWindow::configureTable()
 
 void MainWindow::setTableData()
 {
+    /* Clear Table Before */
+    ui->table->setRowCount(0);
+
     /* Get Loaded Data */
     QVector<XMLData> xmlData = parser.getXmlData();
 
@@ -52,6 +55,7 @@ void MainWindow::setTableData()
 
 void MainWindow::on_lineName_textChanged(const QString &arg1)
 {
+    qDebug() << parser.getXmlData().size();
     /* Find User Name */
     if(networkkManager.setURLName(arg1) > 5000) {
         qDebug() << "User was found";
