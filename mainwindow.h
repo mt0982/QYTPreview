@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QHeaderView>
 #include <documentparser.h>
 
 namespace Ui {
@@ -14,6 +15,8 @@ class MainWindow : public QMainWindow {
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    void configureTable();
 
 private:
     Ui::MainWindow *ui;

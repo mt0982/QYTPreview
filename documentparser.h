@@ -5,9 +5,19 @@
 #include <QFile>
 #include <QDomDocument>
 
+class XMLData {
+public:
+    QString title;
+    QString videoID;
+    QString link;
+    XMLData(){}
+    XMLData(QString t, QString v, QString l): title(t), videoID(v), link(l){}
+};
+
 class DocumentParser {
 private:
     QDomDocument document;
+    QVector<XMLData> xmlData;
 
 public:
     DocumentParser();

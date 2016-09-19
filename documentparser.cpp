@@ -50,6 +50,7 @@ void DocumentParser::readFile(const QString &path)
             qDebug() << "Title:" << Title;
             qDebug() << "VideoID:" << VideoID;
             qDebug() << "Link:" << Link;
+            xmlData.push_back(XMLData(Title, VideoID, Link));
         }
 
         /* Next Component */
