@@ -66,6 +66,7 @@ void DocumentParser::readFile(const QString &path)
             qDebug() << "VideoID:" << VideoID;
             qDebug() << "Link:" << Link;
             qDebug() << "ImageURL:" << ImageURL;
+            qDebug() << " ";
             xmlData.push_back(XMLData(Title, VideoID, Link, ImageURL));
         }
 

@@ -5,6 +5,8 @@
 #include <QHeaderView>
 #include <documentparser.h>
 #include <networkmanager.h>
+#include <imagenetworkmanager.h>
+#include <QThread>
 
 namespace Ui {
 class MainWindow;
@@ -27,6 +29,25 @@ private:
     Ui::MainWindow *ui;
     DocumentParser parser;
     NetworkManager networkkManager;
+    ImageNetworkManager imageNetworkManager;
 };
 
 #endif // MAINWINDOW_H
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

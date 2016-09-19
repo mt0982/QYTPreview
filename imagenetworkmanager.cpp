@@ -1,8 +1,20 @@
 #include "imagenetworkmanager.h"
 
-ImageNetworkManager::ImageNetworkManager()
+ImageNetworkManager::ImageNetworkManager(): counter(0)
 {
 
+}
+
+void ImageNetworkManager::setContainer(QVector<XMLData> &container)
+{
+    counter = 0;
+    xmlData = container;
+    for(int i = 0; i < xmlData.size(); i++) {
+        processingURLImage(xmlData[i].imageURL);
+    }
+
+    /* Back Data To Main Thread */
+    container = xmlData;
 }
 
 void ImageNetworkManager::processingURLImage(const QString &link)
@@ -12,12 +24,12 @@ void ImageNetworkManager::processingURLImage(const QString &link)
 
     QUrl url(link);
     QNetworkRequest request(url);
-    networkManager->get(request);
-}
+    QNetworkReply *reply = networkManager->get(request);
 
-QPixmap ImageNetworkManager::getImage() const
-{
-    return pixmap;
+    /* Synchronous Wait */
+    QEventLoop loop;
+    QObject::connect(reply, SIGNAL(readyRead()), &loop, SLOT(quit()));
+    loop.exec();
 }
 
 void ImageNetworkManager::mFinish(QNetworkReply *reply)
@@ -29,7 +41,10 @@ void ImageNetworkManager::mFinish(QNetworkReply *reply)
 
     QByteArray jpegData = reply->readAll();
     pixmap.loadFromData(jpegData);
-    qDebug() << "Finished:" << pixmap.size();
+
+    xmlData[counter].image = pixmap;
+    qDebug() << "Finished - Image Loaded:" << xmlData[counter].image.size();
+    counter++;
 }
 
 

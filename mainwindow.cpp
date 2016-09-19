@@ -51,6 +51,10 @@ void MainWindow::setTableData()
         ui->table->setItem(i, 1, videoID);
         ui->table->setItem(i, 2, link);
     }
+
+    qDebug() << xmlData[0].image.size();
+    imageNetworkManager.setContainer(xmlData);
+    qDebug() << xmlData[0].image.size();
 }
 
 void MainWindow::on_lineName_textChanged(const QString &arg1)

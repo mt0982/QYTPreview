@@ -7,23 +7,17 @@
 #include <QDir>
 #include <QTextStream>
 #include <QPixmap>
-#include <imagenetworkmanager.h>
 
 class XMLData {
-private:
-    ImageNetworkManager *imageManager;
-
 public:
     QString title;
     QString videoID;
     QString link;
     QPixmap image;
+    QString imageURL;
 
     XMLData(){}
-    XMLData(QString t, QString v, QString l, QString imageURL): title(t), videoID(v), link(l) {
-        imageManager = new ImageNetworkManager;
-        imageManager->processingURLImage(imageURL);
-    }
+    XMLData(QString t, QString v, QString l, QString url): title(t), videoID(v), link(l), imageURL(url){}
 };
 
 class DocumentParser {
@@ -38,3 +32,14 @@ public:
 };
 
 #endif // DOCUMENTPARSER_H
+
+
+
+
+
+
+
+
+
+
+
