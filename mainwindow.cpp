@@ -55,10 +55,13 @@ void MainWindow::setTableData()
 
 void MainWindow::on_lineName_textChanged(const QString &arg1)
 {
+    ui->lineName->setStyleSheet("color: red");
+
     qDebug() << parser.getXmlData().size();
     /* Find User Name */
     if(networkkManager.setURLName(arg1) > 5000) {
         qDebug() << "User was found";
+        ui->lineName->setStyleSheet("color: green; font: bold");
 
         /* Save To File */
         QFile file(QDir::currentPath() + "/file.xml");

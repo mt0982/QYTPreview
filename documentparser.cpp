@@ -36,6 +36,7 @@ void DocumentParser::readFile(const QString &path)
             QString Title;
             QString VideoID;
             QString Link;
+            QString ImageURL;
 
             /* Read each child of the component */
             while (!Child.isNull()) {
@@ -44,15 +45,27 @@ void DocumentParser::readFile(const QString &path)
                 if (Child.tagName() == "title")         Title = Child.firstChild().toText().data();
                 if (Child.tagName() == "yt:videoId")    VideoID = Child.firstChild().toText().data();
                 if (Child.tagName() == "link")          Link = Child.attribute("href");
+                if (Child.tagName() == "media:group") {
+
+                    /* Fine Next Chile (Image URL) */
+                    QDomElement nextChild = Child.firstChild().toElement();
+                    while(!nextChild.isNull()) {
+                        if(nextChild.tagName() == "media:thumbnail"){
+                            ImageURL = nextChild.attribute("url");
+                        }
+                        nextChild = nextChild.nextSibling().toElement();
+                    }
+                }
 
                 /* Next Child */
                 Child = Child.nextSibling().toElement();
             }
 
             /* Show Data */
-//            qDebug() << "Title:" << Title;
-//            qDebug() << "VideoID:" << VideoID;
-//            qDebug() << "Link:" << Link;
+            qDebug() << "Title:" << Title;
+            qDebug() << "VideoID:" << VideoID;
+            qDebug() << "Link:" << Link;
+            qDebug() << "ImageURL:" << ImageURL;
             xmlData.push_back(XMLData(Title, VideoID, Link));
         }
 
