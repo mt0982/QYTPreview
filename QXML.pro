@@ -15,10 +15,12 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     documentparser.cpp \
-    networkmanager.cpp
+    networkmanager.cpp \
+    imagenetworkmanager.cpp
 
 HEADERS  += mainwindow.h \
     documentparser.h \
-    networkmanager.h
+    networkmanager.h \
+    imagenetworkmanager.h
 
 FORMS    += mainwindow.ui

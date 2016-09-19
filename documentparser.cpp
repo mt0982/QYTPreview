@@ -47,7 +47,7 @@ void DocumentParser::readFile(const QString &path)
                 if (Child.tagName() == "link")          Link = Child.attribute("href");
                 if (Child.tagName() == "media:group") {
 
-                    /* Fine Next Chile (Image URL) */
+                    /* Fine Next Child (Image URL) */
                     QDomElement nextChild = Child.firstChild().toElement();
                     while(!nextChild.isNull()) {
                         if(nextChild.tagName() == "media:thumbnail"){
@@ -66,7 +66,7 @@ void DocumentParser::readFile(const QString &path)
             qDebug() << "VideoID:" << VideoID;
             qDebug() << "Link:" << Link;
             qDebug() << "ImageURL:" << ImageURL;
-            xmlData.push_back(XMLData(Title, VideoID, Link));
+            xmlData.push_back(XMLData(Title, VideoID, Link, ImageURL));
         }
 
         /* Next Component */
