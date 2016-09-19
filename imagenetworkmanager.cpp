@@ -24,11 +24,11 @@ void ImageNetworkManager::processingURLImage(const QString &link)
 
     QUrl url(link);
     QNetworkRequest request(url);
-    QNetworkReply *reply = networkManager->get(request);
+    networkManager->get(request);
 
     /* Synchronous Wait */
     QEventLoop loop;
-    QObject::connect(reply, SIGNAL(readyRead()), &loop, SLOT(quit()));
+    loop.connect(networkManager, SIGNAL(finished(QNetworkReply*)), SLOT(quit()));
     loop.exec();
 }
 

@@ -17,8 +17,8 @@ MainWindow::~MainWindow()
 void MainWindow::configureTable()
 {
     QStringList headerList;
-    headerList << "Title" << "Video ID" << "Video Link";
-    ui->table->setColumnCount(3);
+    headerList << " " << "Title" << "Video ID" << "Video Link";
+    ui->table->setColumnCount(4);
     ui->table->setHorizontalHeaderLabels(headerList);
 
     /* Stretch */
@@ -47,14 +47,22 @@ void MainWindow::setTableData()
         link = new QTableWidgetItem(xmlData[i].link);
 
         ui->table->insertRow(i);
-        ui->table->setItem(i, 0, title);
-        ui->table->setItem(i, 1, videoID);
-        ui->table->setItem(i, 2, link);
+        ui->table->setItem(i, 1, title);
+        ui->table->setItem(i, 2, videoID);
+        ui->table->setItem(i, 3, link);
     }
 
+    /* Convert URL To Pixmap */
     qDebug() << xmlData[0].image.size();
     imageNetworkManager.setContainer(xmlData);
     qDebug() << xmlData[0].image.size();
+
+    /* Set Image */
+    qDebug() << "Size:" << xmlData.size();
+    for(int i = 0; i < xmlData.size(); i++) {
+        qDebug() << xmlData[i].image.size();
+        ui->table->setItem(i, 0, new QTableWidgetItem(xmlData[i].image.width()));
+    }
 }
 
 void MainWindow::on_lineName_textChanged(const QString &arg1)
