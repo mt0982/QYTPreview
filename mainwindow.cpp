@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
     /* Configure Table */
     configureTable();
+    setWindowTitle("YT Preview");
 }
 
 MainWindow::~MainWindow()
@@ -17,10 +18,12 @@ MainWindow::~MainWindow()
 void MainWindow::configureTable()
 {
     QStringList headerList;
-    headerList << " " << "Title" << "Video ID" << "Video Link";
+    headerList << "Preview" << "Title" << "Video ID" << "Video Link";
     ui->table->setColumnCount(4);
     ui->table->setHorizontalHeaderLabels(headerList);
     ui->table->setColumnWidth(0, 240);
+    ui->table->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->table->setSelectionMode(QTableWidget::NoSelection);
 
     /* Stretch */
     for (int nr = 1; nr < ui->table->horizontalHeader()->count(); ++nr) {
@@ -55,9 +58,9 @@ void MainWindow::setTableData()
     }
 
     /* Convert URL To Pixmap */
-    qDebug() << xmlData[0].image.size();
+    qDebug() << "Before:" << xmlData[0].image.size();
     imageNetworkManager.setContainer(xmlData);
-    qDebug() << xmlData[0].image.size();
+    qDebug() << "After" << xmlData[0].image.size();
 
     /* Set Image */
     qDebug() << "Size:" << xmlData.size();
