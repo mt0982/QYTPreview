@@ -16,12 +16,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     documentparser.cpp \
     networkmanager.cpp \
-    imagenetworkmanager.cpp
+    imagenetworkmanager.cpp \
+    storage.cpp
 
 HEADERS  += mainwindow.h \
     documentparser.h \
     networkmanager.h \
-    imagenetworkmanager.h
+    imagenetworkmanager.h \
+    storage.h
 
 FORMS    += mainwindow.ui
 

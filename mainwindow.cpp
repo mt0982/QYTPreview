@@ -18,14 +18,19 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     ui->label_2->hide();
     globalFrame = 0;
     isBtnFavouritePresssed = false;
+    ui->btnAdd->setDisabled(true);
 
     /* Timer */
     connect(&timer, SIGNAL(timeout()), this, SLOT(refresh()));
     timer.start();
+
+    /* Initialize Table Data */
+    loadDataToTable();
 }
 
 MainWindow::~MainWindow()
 {
+    saveDataFromTable();
     delete ui;
 }
 
@@ -86,6 +91,19 @@ void MainWindow::setTableData()
     }
 }
 
+void MainWindow::checkRepeat(const QString &channel)
+{
+    /* Check Repeat */
+    int itemCount = ui->listWidget->count();
+
+    for(int i = 0; i < itemCount; i++) {
+        if(ui->listWidget->item(i)->text() == channel) {
+            ui->btnAdd->setDisabled(true);
+            break;
+        }
+    }
+}
+
 void MainWindow::on_lineName_textChanged(const QString &arg1)
 {
     ui->lineName->setStyleSheet("color: red");
@@ -109,7 +127,16 @@ void MainWindow::on_lineName_textChanged(const QString &arg1)
         /* Load Data To Table */
         parser.readFile(QDir::currentPath() + "/file.xml");
         setTableData();
+
+        /* Enable Add Button */
+        ui->btnAdd->setDisabled(false);
+    } else {
+
+        /* Disable Add Button */
+        ui->btnAdd->setDisabled(true);
     }
+
+    checkRepeat(arg1);
 }
 
 void MainWindow::on_btnFavourite_clicked(bool checked)
@@ -140,6 +167,56 @@ void MainWindow::refresh()
     if(globalFrame == 30 && isBtnFavouritePresssed)  movieBtnFavourite->setPaused(true);
     else if(globalFrame == 0 && !isBtnFavouritePresssed) movieBtnFavourite->setPaused(true);
 }
+
+void MainWindow::on_btnAdd_clicked()
+{
+    /* Add Favourite Channel To List */
+    QString channel = ui->lineName->text();
+
+    if(!channel.isEmpty()){
+        qDebug() << channel;
+        ui->listWidget->addItem(channel);
+    }
+
+    /* Disable Multiple Insert */
+    ui->btnAdd->setDisabled(true);
+}
+
+void MainWindow::on_listWidget_doubleClicked(const QModelIndex &index)
+{
+    /* Select Channel */
+    int row = index.row();
+    const QString channel = ui->listWidget->item(row)->text();
+    ui->lineName->setText(channel);
+}
+
+void MainWindow::saveDataFromTable()
+{
+    int size = ui->listWidget->count();
+    QVector<QString> channel;
+
+    /* Read All Elements */
+    for(int i = 0; i < size; i++) {
+        QString name = ui->listWidget->item(i)->text();
+        channel.push_back(name);
+    }
+
+    /* Save Data */
+    storage.save(channel);
+}
+
+void MainWindow::loadDataToTable()
+{
+    /* Load Data To Table */
+    QVector<QString> channel = storage.load();
+
+    for(int i = 0; i < channel.size(); i++) {
+        ui->listWidget->addItem(channel[i]);
+    }
+}
+
+
+
 
 
 

@@ -15,6 +15,22 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="3" colspan="2">
+     <widget class="QLineEdit" name="lineName">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="dragEnabled">
+       <bool>false</bool>
+      </property>
+      <property name="placeholderText">
+       <string>e.g. youtube</string>
+      </property>
+     </widget>
+    </item>
     <item row="1" column="0">
      <widget class="QListWidget" name="listWidget">
       <property name="sizePolicy">
@@ -37,35 +53,19 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="2">
-     <widget class="QLabel" name="label">
-      <property name="maximumSize">
-       <size>
-        <width>90</width>
-        <height>16777215</height>
-       </size>
+    <item row="0" column="1" rowspan="2">
+     <widget class="Line" name="line">
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
       </property>
-      <property name="text">
-       <string>YT Username:</string>
+      <property name="lineWidth">
+       <number>1</number>
       </property>
-     </widget>
-    </item>
-    <item row="1" column="2" colspan="3">
-     <widget class="QTableWidget" name="table"/>
-    </item>
-    <item row="0" column="3" colspan="2">
-     <widget class="QLineEdit" name="lineName">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
+      <property name="midLineWidth">
+       <number>0</number>
       </property>
-      <property name="dragEnabled">
-       <bool>false</bool>
-      </property>
-      <property name="placeholderText">
-       <string>e.g. youtube</string>
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
       </property>
      </widget>
     </item>
@@ -110,7 +110,9 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">border-image: url(:/icon/animation.gif);</string>
+         <string notr="true">QPushButton {
+	border-image: url(:/icon/animation.gif);
+}</string>
         </property>
         <property name="text">
          <string/>
@@ -121,25 +123,47 @@
         <property name="checked">
          <bool>true</bool>
         </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
        </widget>
       </item>
      </layout>
     </item>
-    <item row="0" column="1" rowspan="2">
-     <widget class="Line" name="line">
-      <property name="frameShadow">
-       <enum>QFrame::Plain</enum>
+    <item row="0" column="2">
+     <widget class="QLabel" name="label">
+      <property name="maximumSize">
+       <size>
+        <width>70</width>
+        <height>16777215</height>
+       </size>
       </property>
-      <property name="lineWidth">
-       <number>1</number>
-      </property>
-      <property name="midLineWidth">
-       <number>0</number>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
+      <property name="text">
+       <string>Username:</string>
       </property>
      </widget>
+    </item>
+    <item row="0" column="5">
+     <widget class="QPushButton" name="btnAdd">
+      <property name="minimumSize">
+       <size>
+        <width>32</width>
+        <height>32</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>32</width>
+        <height>32</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>...</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2" colspan="4">
+     <widget class="QTableWidget" name="table"/>
     </item>
    </layout>
   </widget>

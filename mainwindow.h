@@ -8,6 +8,7 @@
 #include <documentparser.h>
 #include <networkmanager.h>
 #include <imagenetworkmanager.h>
+#include <storage.h>
 
 namespace Ui {
 class MainWindow;
@@ -22,12 +23,17 @@ public:
 
     void configureTable();
     void setTableData();
+    void checkRepeat(const QString &channel);
+    void saveDataFromTable();
+    void loadDataToTable();
 
 private slots:
     void on_lineName_textChanged(const QString &arg1);
     void on_btnFavourite_clicked(bool checked);
     void setButtonIcon(int frame);
     void refresh();
+    void on_btnAdd_clicked();
+    void on_listWidget_doubleClicked(const QModelIndex &index);
 
 private:
     Ui::MainWindow *ui;
@@ -36,6 +42,7 @@ private:
     ImageNetworkManager imageNetworkManager;
     QMovie *movieBtnFavourite;
     QTimer timer;
+    Storage storage;
     int globalFrame;
     bool isBtnFavouritePresssed;
 };
