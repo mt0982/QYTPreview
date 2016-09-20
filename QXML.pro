@@ -24,3 +24,6 @@ HEADERS  += mainwindow.h \
     imagenetworkmanager.h
 
 FORMS    += mainwindow.ui
+
+RESOURCES += \
+    res.qrc

@@ -8,6 +8,20 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     /* Configure Table */
     configureTable();
     setWindowTitle("YT Preview");
+
+    /* Animation */
+    movieBtnFavourite = new QMovie(":/icon/animation.gif");
+    connect(movieBtnFavourite, SIGNAL(frameChanged(int)), this, SLOT(setButtonIcon(int)));
+
+    /* Initial State */
+    ui->listWidget->hide();
+    ui->label_2->hide();
+    globalFrame = 0;
+    isBtnFavouritePresssed = false;
+
+    /* Timer */
+    connect(&timer, SIGNAL(timeout()), this, SLOT(refresh()));
+    timer.start();
 }
 
 MainWindow::~MainWindow()
@@ -98,6 +112,34 @@ void MainWindow::on_lineName_textChanged(const QString &arg1)
     }
 }
 
+void MainWindow::on_btnFavourite_clicked(bool checked)
+{
+    /* Hide Favourite Menu */
+    if(checked) {
+        ui->listWidget->hide();
+        ui->label_2->hide();
+        movieBtnFavourite->start();
+        isBtnFavouritePresssed = false;
+    } else {
+        ui->listWidget->show();
+        ui->label_2->show();
+        movieBtnFavourite->start();
+        isBtnFavouritePresssed = true;
+    }
+}
+
+void MainWindow::setButtonIcon(int frame)
+{
+    globalFrame = frame;
+    ui->btnFavourite->setIcon(QIcon(movieBtnFavourite->currentPixmap()));
+    ui->btnFavourite->setIconSize(QSize(32,32));
+}
+
+void MainWindow::refresh()
+{
+    if(globalFrame == 30 && isBtnFavouritePresssed)  movieBtnFavourite->setPaused(true);
+    else if(globalFrame == 0 && !isBtnFavouritePresssed) movieBtnFavourite->setPaused(true);
+}
 
 
 

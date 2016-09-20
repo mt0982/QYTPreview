@@ -3,10 +3,11 @@
 
 #include <QMainWindow>
 #include <QHeaderView>
+#include <QMovie>
+#include <QTimer>
 #include <documentparser.h>
 #include <networkmanager.h>
 #include <imagenetworkmanager.h>
-#include <QThread>
 
 namespace Ui {
 class MainWindow;
@@ -24,12 +25,19 @@ public:
 
 private slots:
     void on_lineName_textChanged(const QString &arg1);
+    void on_btnFavourite_clicked(bool checked);
+    void setButtonIcon(int frame);
+    void refresh();
 
 private:
     Ui::MainWindow *ui;
     DocumentParser parser;
     NetworkManager networkkManager;
     ImageNetworkManager imageNetworkManager;
+    QMovie *movieBtnFavourite;
+    QTimer timer;
+    int globalFrame;
+    bool isBtnFavouritePresssed;
 };
 
 #endif // MAINWINDOW_H
