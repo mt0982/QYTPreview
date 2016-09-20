@@ -15,22 +15,6 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="3" colspan="2">
-     <widget class="QLineEdit" name="lineName">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="dragEnabled">
-       <bool>false</bool>
-      </property>
-      <property name="placeholderText">
-       <string>e.g. youtube</string>
-      </property>
-     </widget>
-    </item>
     <item row="1" column="0">
      <widget class="QListWidget" name="listWidget">
       <property name="sizePolicy">
@@ -66,6 +50,22 @@
       </property>
       <property name="orientation">
        <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2" colspan="10">
+     <widget class="QTableWidget" name="table"/>
+    </item>
+    <item row="0" column="2">
+     <widget class="QLabel" name="label">
+      <property name="maximumSize">
+       <size>
+        <width>70</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Username:</string>
       </property>
      </widget>
     </item>
@@ -110,9 +110,7 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">QPushButton {
-	border-image: url(:/icon/animation.gif);
-}</string>
+         <string notr="true">border-image: url(:/icon/rounded.gif);</string>
         </property>
         <property name="text">
          <string/>
@@ -130,40 +128,72 @@
       </item>
      </layout>
     </item>
-    <item row="0" column="2">
-     <widget class="QLabel" name="label">
-      <property name="maximumSize">
-       <size>
-        <width>70</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>Username:</string>
-      </property>
-     </widget>
+    <item row="0" column="11">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QPushButton" name="btnAdd">
+        <property name="minimumSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/icon/favourite.gif);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelWait">
+        <property name="minimumSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>  X</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
-    <item row="0" column="5">
-     <widget class="QPushButton" name="btnAdd">
+    <item row="0" column="3" colspan="8">
+     <widget class="QLineEdit" name="lineName">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="minimumSize">
        <size>
-        <width>32</width>
-        <height>32</height>
+        <width>0</width>
+        <height>0</height>
        </size>
       </property>
-      <property name="maximumSize">
-       <size>
-        <width>32</width>
-        <height>32</height>
-       </size>
+      <property name="dragEnabled">
+       <bool>false</bool>
       </property>
-      <property name="text">
-       <string>...</string>
+      <property name="placeholderText">
+       <string>e.g. youtube</string>
       </property>
      </widget>
-    </item>
-    <item row="1" column="2" colspan="4">
-     <widget class="QTableWidget" name="table"/>
     </item>
    </layout>
   </widget>

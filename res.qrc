@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file>icon/animation.gif</file>
+        <file>icon/rounded.gif</file>
+        <file>icon/wait.gif</file>
+        <file>icon/wait24x24.gif</file>
     </qresource>
 </RCC>

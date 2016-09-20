@@ -41,6 +41,7 @@ private:
     NetworkManager networkkManager;
     ImageNetworkManager imageNetworkManager;
     QMovie *movieBtnFavourite;
+    QMovie *movieLabelLoad;
     QTimer timer;
     Storage storage;
     int globalFrame;

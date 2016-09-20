@@ -10,8 +10,10 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     setWindowTitle("YT Preview");
 
     /* Animation */
-    movieBtnFavourite = new QMovie(":/icon/animation.gif");
+    movieBtnFavourite = new QMovie(":/icon/rounded.gif");
+    movieLabelLoad = new QMovie(":/icon/wait24x24.gif");
     connect(movieBtnFavourite, SIGNAL(frameChanged(int)), this, SLOT(setButtonIcon(int)));
+    movieLabelLoad->start();
 
     /* Initial State */
     ui->listWidget->hide();
@@ -19,6 +21,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     globalFrame = 0;
     isBtnFavouritePresssed = false;
     ui->btnAdd->setDisabled(true);
+    ui->labelWait->setMovie(movieLabelLoad);
+    ui->btnAdd->hide();
 
     /* Timer */
     connect(&timer, SIGNAL(timeout()), this, SLOT(refresh()));
@@ -130,9 +134,13 @@ void MainWindow::on_lineName_textChanged(const QString &arg1)
 
         /* Enable Add Button */
         ui->btnAdd->setDisabled(false);
+        ui->btnAdd->show();
+        ui->labelWait->hide();
     } else {
 
         /* Disable Add Button */
+        ui->btnAdd->hide();
+        ui->labelWait->show();
         ui->btnAdd->setDisabled(true);
     }
 
