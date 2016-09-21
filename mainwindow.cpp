@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     ui->btnAdd->setDisabled(true);
     ui->labelWait->setMovie(movieLabelLoad);
     ui->btnAdd->hide();
-    ui->horizontalLayout_3->setAlignment(Qt::AlignRight);
+    ui->labelSearch->hide();
     ui->btnRemove->hide();
     ui->btnRemove->setIcon(QIcon(":/icon/remove.png"));
     ui->btnRemove->setIconSize(QSize(24,24));
@@ -164,12 +164,14 @@ void MainWindow::on_btnFavourite_clicked(bool checked)
         movieBtnFavourite->start();
         isBtnFavouritePresssed = false;
         ui->btnRemove->hide();
+        ui->labelSearch->hide();
     } else {
         ui->listWidget->show();
         ui->label_2->show();
         movieBtnFavourite->start();
         isBtnFavouritePresssed = true;
         ui->btnRemove->show();
+        ui->labelSearch->show();
     }
 }
 
@@ -266,6 +268,27 @@ void MainWindow::on_listWidget_clicked(const QModelIndex &index)
         ui->btnRemove->setEnabled(true);
     }
 }
+
+void MainWindow::on_labelSearch_textChanged(const QString &arg1)
+{
+    /* Show Only Founded Channel */
+    int size = ui->listWidget->count();
+
+    /* Show | Hide */
+    for(int row = 0; row < size; ++row) {
+        QString text = ui->listWidget->item(row)->text();
+        if(text.contains(arg1)) {
+            ui->listWidget->setRowHidden(row, false);
+        } else {
+            ui->listWidget->setRowHidden(row, true);
+        }
+    }
+}
+
+
+
+
+
 
 
 

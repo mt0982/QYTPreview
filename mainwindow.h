@@ -42,6 +42,8 @@ private slots:
 
     void on_listWidget_clicked(const QModelIndex &index);
 
+    void on_labelSearch_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     DocumentParser parser;
