@@ -38,6 +38,10 @@ private slots:
     void on_listWidget_doubleClicked(const QModelIndex &index);
     void on_table_cellDoubleClicked(int row, int column);
 
+    void on_btnRemove_clicked();
+
+    void on_listWidget_clicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
     DocumentParser parser;

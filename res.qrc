@@ -5,5 +5,6 @@
         <file>icon/wait.gif</file>
         <file>icon/wait24x24.gif</file>
         <file>icon/save.gif</file>
+        <file>icon/remove.png</file>
     </qresource>
 </RCC>

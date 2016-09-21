@@ -26,6 +26,11 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     ui->btnAdd->setDisabled(true);
     ui->labelWait->setMovie(movieLabelLoad);
     ui->btnAdd->hide();
+    ui->horizontalLayout_3->setAlignment(Qt::AlignRight);
+    ui->btnRemove->hide();
+    ui->btnRemove->setIcon(QIcon(":/icon/remove.png"));
+    ui->btnRemove->setIconSize(QSize(24,24));
+    ui->btnRemove->setDisabled(true);
 
     /* Timer */
     connect(&timer, SIGNAL(timeout()), this, SLOT(refresh()));
@@ -158,11 +163,13 @@ void MainWindow::on_btnFavourite_clicked(bool checked)
         ui->label_2->hide();
         movieBtnFavourite->start();
         isBtnFavouritePresssed = false;
+        ui->btnRemove->hide();
     } else {
         ui->listWidget->show();
         ui->label_2->show();
         movieBtnFavourite->start();
         isBtnFavouritePresssed = true;
+        ui->btnRemove->show();
     }
 }
 
@@ -242,10 +249,23 @@ void MainWindow::on_table_cellDoubleClicked(int row, int column)
     }
 }
 
+void MainWindow::on_btnRemove_clicked()
+{
+    /* Remove Item From List */
+    int row = ui->listWidget->currentRow();
+    QListWidgetItem *item = ui->listWidget->takeItem(row);
+    const QString text = item->text();
+    ui->listWidget->removeItemWidget(item);
+    ui->listWidget->repaint();
+    qDebug() << "Removed" << text << row;
+}
 
-
-
-
+void MainWindow::on_listWidget_clicked(const QModelIndex &index)
+{
+    if(!ui->btnRemove->isEnabled()) {
+        ui->btnRemove->setEnabled(true);
+    }
+}
 
 
 
