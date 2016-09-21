@@ -31,6 +31,7 @@ private slots:
     void on_lineName_textChanged(const QString &arg1);
     void on_btnFavourite_clicked(bool checked);
     void setButtonIcon(int frame);
+    void setButton2Icon(int frame);
     void refresh();
     void on_btnAdd_clicked();
     void on_listWidget_doubleClicked(const QModelIndex &index);
@@ -42,6 +43,7 @@ private:
     ImageNetworkManager imageNetworkManager;
     QMovie *movieBtnFavourite;
     QMovie *movieLabelLoad;
+    QMovie *movieBtnAdd;
     QTimer timer;
     Storage storage;
     int globalFrame;

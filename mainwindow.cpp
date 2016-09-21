@@ -12,8 +12,11 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     /* Animation */
     movieBtnFavourite = new QMovie(":/icon/rounded.gif");
     movieLabelLoad = new QMovie(":/icon/wait24x24.gif");
+    movieBtnAdd = new QMovie(":/icon/save.gif");
     connect(movieBtnFavourite, SIGNAL(frameChanged(int)), this, SLOT(setButtonIcon(int)));
+    connect(movieBtnAdd, SIGNAL(frameChanged(int)), this, SLOT(setButton2Icon(int)));
     movieLabelLoad->start();
+    movieBtnAdd->start();
 
     /* Initial State */
     ui->listWidget->hide();
@@ -168,6 +171,13 @@ void MainWindow::setButtonIcon(int frame)
     globalFrame = frame;
     ui->btnFavourite->setIcon(QIcon(movieBtnFavourite->currentPixmap()));
     ui->btnFavourite->setIconSize(QSize(32,32));
+}
+
+void MainWindow::setButton2Icon(int frame)
+{
+    /* Button Add Movie */
+    ui->btnAdd->setIcon(QIcon(movieBtnAdd->currentPixmap()));
+    ui->btnAdd->setIconSize(QSize(24,24));
 }
 
 void MainWindow::refresh()
