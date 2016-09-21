@@ -5,6 +5,7 @@
 #include <QHeaderView>
 #include <QMovie>
 #include <QTimer>
+#include <QDesktopServices>
 #include <documentparser.h>
 #include <networkmanager.h>
 #include <imagenetworkmanager.h>
@@ -35,6 +36,7 @@ private slots:
     void refresh();
     void on_btnAdd_clicked();
     void on_listWidget_doubleClicked(const QModelIndex &index);
+    void on_table_cellDoubleClicked(int row, int column);
 
 private:
     Ui::MainWindow *ui;

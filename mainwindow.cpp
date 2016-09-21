@@ -233,6 +233,15 @@ void MainWindow::loadDataToTable()
     }
 }
 
+void MainWindow::on_table_cellDoubleClicked(int row, int column)
+{
+    if(column == 3) {
+        const QString link = ui->table->item(row, column)->text();
+        qDebug() << link;
+        QDesktopServices::openUrl(link);
+    }
+}
+
 
 
 

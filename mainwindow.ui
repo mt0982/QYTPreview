@@ -184,7 +184,13 @@
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>0</height>
+        <height>24</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>9954</width>
+        <height>24</height>
        </size>
       </property>
       <property name="dragEnabled">
